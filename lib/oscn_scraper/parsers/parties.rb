@@ -46,10 +46,9 @@ module OscnScraper
       end
 
       def build_parties_text(element)
-        parts = element.text.split(",\r\n")
         parties[:parties] << {
-          name: parts[0]&.strip,
-          party_type: parts[1]&.strip
+          name: element.xpath('//span[@class="parties_partyname"]').first.text&.strip,
+          party_type: element.xpath('//span[@class="parties_type"]').first.text&.strip
         }
       end
     end
