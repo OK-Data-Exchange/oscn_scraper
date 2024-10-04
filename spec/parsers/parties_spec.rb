@@ -15,7 +15,7 @@ RSpec.describe OscnScraper::Parsers::Parties do
     data = described_class.parse(parsed_html)
 
     expect(data[:parties].count).to eq 2
-    expect(data[:parties].first[:name]).to eq ("Cavalry SPV I, LLC")
-    expect(data[:parties].first[:party_type]).to eq ("Plaintiff")
+    expect(data[:parties].first[:name]).to eq('Cavalry SPV I, LLC')
+    expect(data[:parties].first[:party_type]).to eq('Plaintiff')
   end
 end
