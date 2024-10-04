@@ -17,5 +17,7 @@ RSpec.describe OscnScraper::Parsers::Parties do
     expect(data[:parties].count).to eq 2
     expect(data[:parties].first[:name]).to eq('Cavalry SPV I, LLC')
     expect(data[:parties].first[:party_type]).to eq('Plaintiff')
+    expect(data[:parties].last[:name]).to eq('Paul,  John  O')
+    expect(data[:parties].last[:party_type]).to eq('Defendant')
   end
 end

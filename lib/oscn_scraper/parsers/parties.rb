@@ -26,7 +26,7 @@ module OscnScraper
         return parties if parties_html.blank?
 
         if parties_html.css('a').empty?
-          parties_html.css('p').children.each do |element|
+          parties_html.xpath('//span[@class="parties_party"]').each do |element|
             build_parties_text(element) unless element.text.blank?
           end
         else
@@ -47,8 +47,8 @@ module OscnScraper
 
       def build_parties_text(element)
         parties[:parties] << {
-          name: element.xpath('//span[@class="parties_partyname"]').first.text&.strip,
-          party_type: element.xpath('//span[@class="parties_type"]').first.text&.strip
+          name: element.xpath('span[@class="parties_partyname"]').first.text&.strip,
+          party_type: element.xpath('span[@class="parties_type"]').first.text&.strip
         }
       end
     end
