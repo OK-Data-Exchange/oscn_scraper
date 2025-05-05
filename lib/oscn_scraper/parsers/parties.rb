@@ -41,8 +41,13 @@ module OscnScraper
         parties[:parties] << {
           name: link.text.strip,
           link: link.attributes['href'].value,
-          party_type: link.xpath('following-sibling::span[@class="parties_type"]').first.text.gsub(',', '').squish
+          party_type: get_party_type(link)
         }
+      end
+
+      def get_party_type(link)
+        el = link.xpath('following-sibling::span[@class="parties_type"]') || link.xpath('following-sibling::text()[1]')
+        el.text.gsub(',', '').squish
       end
 
       def build_parties_text(element)
