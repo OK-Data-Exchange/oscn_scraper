@@ -27,7 +27,7 @@ module OscnScraper
           OscnScraper::Parsers::Parties,
           OscnScraper::Parsers::Issues,
           OscnScraper::Parsers::Events,
-          OscnScraper::Parsers::Counts,
+          is_kp? ? OscnScraper::Parsers::CountsKp : OscnScraper::Parsers::Counts,
           OscnScraper::Parsers::DocketEvents
         ].each do |parser|
           parse_object(parser)
@@ -87,7 +87,15 @@ module OscnScraper
       end
 
       def counts_html
-        parsed_html.css('div.CountsContainer')
+        parsed_html.xpath('//h2[contains(@class, "counts")]/following-sibling::*')
+      end
+
+      def counts_kp_html
+        counts_html
+      end
+
+      def is_kp?
+        counts_html.css('.CountsContainer').empty?
       end
 
       def docket_events_html
