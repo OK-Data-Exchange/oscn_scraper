@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 RSpec.describe OscnScraper::Parsers::DocketEvents do
   describe '#parse' do
     it 'parses a case with many docket events' do
@@ -50,3 +51,4 @@ RSpec.describe OscnScraper::Parsers::DocketEvents do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

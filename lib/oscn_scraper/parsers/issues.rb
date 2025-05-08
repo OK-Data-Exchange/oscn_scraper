@@ -34,7 +34,7 @@ module OscnScraper
       end
 
       def parse_simplified_issues
-        # todo: add support for multiple issues once we can find example
+        # TODO: add support for multiple issues once we can find example
         issue_paragraph = issues_html.xpath('//h2[contains(@class, "issues")]/following-sibling::p[1]')
         return issues if issue_paragraph.count < 1
 

@@ -24,6 +24,7 @@ module OscnScraper
 
       attr_accessor :docket_events
 
+      # rubocop:disable Metrics/AbcSize
       def parse_docket_events
         return docket_events if docket_events_html.blank?
 
@@ -43,6 +44,7 @@ module OscnScraper
         end
         docket_events
       end
+      # rubocop:enable Metrics/AbcSize
 
       def parse_links(row)
         row.css('a').map { |link| { title: link.text, link: "https://www.oscn.net/dockets/#{link['href']}", oscn_id: extract_id(link['href']) } }
@@ -56,6 +58,7 @@ module OscnScraper
 
       def date(data)
         return nil if sanitize_data(data) == ''
+
         begin
           Date.strptime(sanitize_data(data), '%m-%d-%Y')
         rescue Date::Error

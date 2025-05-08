@@ -1,5 +1,5 @@
 require 'spec_helper'
-
+# rubocop:disable Metrics/BlockLength
 RSpec.describe OscnScraper::Requestor::Report do
   describe '#fetch_daily_filings' do
     it 'only allows valid params' do
@@ -43,3 +43,4 @@ RSpec.describe OscnScraper::Requestor::Report do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength
