@@ -15,6 +15,7 @@ module OscnScraper
   require 'oscn_scraper/parsers/link'
   require 'oscn_scraper/parsers/issues'
   require 'oscn_scraper/parsers/counts'
+  require 'oscn_scraper/parsers/counts_kp'
   require 'oscn_scraper/parsers/attorney'
   require 'oscn_scraper/parsers/docket_events'
   require 'oscn_scraper/requestor/base'

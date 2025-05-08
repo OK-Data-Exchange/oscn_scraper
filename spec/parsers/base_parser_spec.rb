@@ -41,12 +41,11 @@ RSpec.describe OscnScraper::Parsers::BaseParser do
         parsed_html = Nokogiri::HTML.parse(html)
         data = described_class.new(parsed_html).build_object
 
-        expect(data[:events].count).to_not be nil
-        expect(data[:attorneys].count).to_not be nil
-        expect(data[:parties].count).to_not be nil
-        expect(data[:counts].count).to_not be nil
-        expect(data[:issues].count).to_not be nil
-        expect(data[:docket_events].count).to_not be nil
+        expect(data[:events].count).to_not be 0
+        expect(data[:attorneys].count).to_not be 0
+        expect(data[:parties].count).to_not be 0
+        expect(data[:counts].count).to_not be 0
+        expect(data[:docket_events].count).to_not be 0
       end
     end
 

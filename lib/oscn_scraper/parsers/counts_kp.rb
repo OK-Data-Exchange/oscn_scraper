@@ -22,18 +22,15 @@ module OscnScraper
 
       def parse_counts
         counts = counts_html.css('p').map do |row|
-          parties_html(row).each do |p|
-            counts[:counts] << count_object(row, p)
-          end
+          count_object(row)
         end
-        {counts: counts}
+        { counts: counts }
       end
 
-      def count_object(row, party)
+      def count_object(row)
         {
           number: count_number(row),
-          as_filed: charge(row),
-          charge: charge(party),
+          charge: charge(row)
         }
       end
 
