@@ -12,9 +12,9 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/AyOK-Code/oscn_scraper'
   spec.license       = 'MIT'
 
-  # spec.files         = Dir.chdir(File.expand_path(__dir__)) do
-  #   `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
-  # end
+  spec.files         = Dir.chdir(File.expand_path(__dir__)) do
+    `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  end
   spec.files         = ['lib/oscn_scraper.rb', 'lib/parsers/base_parser.rb']
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
