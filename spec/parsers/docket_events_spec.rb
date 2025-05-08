@@ -17,8 +17,8 @@ RSpec.describe OscnScraper::Parsers::DocketEvents do
       expect(data[:docket_events].count).to eq 224
     end
 
-    it 'parses docket events with alternative dates' do
-      fixture_path = 'spec/fixtures/parsers/docket_events/alt-date-format.html'
+    it 'parses docket events for kp date format' do
+      fixture_path = 'spec/fixtures/parsers/docket_events/kp-date-format.html'
       parsed_html = load_and_parse_fixture(fixture_path)
       data = described_class.parse(parsed_html)
 
@@ -26,7 +26,7 @@ RSpec.describe OscnScraper::Parsers::DocketEvents do
     end
 
     it 'parses docket events with multiple rows for the same date' do
-      fixture_path = 'spec/fixtures/parsers/docket_events/multirow-for-date.html'
+      fixture_path = 'spec/fixtures/parsers/docket_events/kp-multirow-for-date.html'
       parsed_html = load_and_parse_fixture(fixture_path)
       data = described_class.parse(parsed_html)
 

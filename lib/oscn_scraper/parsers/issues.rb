@@ -25,7 +25,7 @@ module OscnScraper
       def parse_issues
         issue_content = issues_html.xpath('//*[preceding-sibling::h2[1][contains(@class, "issues")]]')
         issue_table = issue_content.css('table')[0]
-        return parse_simplified_issues unless issue_table
+        return parse_kp_issues unless issue_table
 
         dispositions_table = issue_content.css('table')[1]
         issues[:issues] << issue_object(issue_table, dispositions_table)
@@ -33,7 +33,7 @@ module OscnScraper
         issues
       end
 
-      def parse_simplified_issues
+      def parse_kp_issues
         # TODO: add support for multiple issues once we can find example
         issue_paragraph = issues_html.xpath('//h2[contains(@class, "issues")]/following-sibling::p[1]')
         return issues if issue_paragraph.count < 1

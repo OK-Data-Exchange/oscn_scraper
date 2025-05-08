@@ -17,9 +17,9 @@ RSpec.describe OscnScraper::Parsers::Issues do
       end
     end
 
-    context 'when case has a simplified issue format' do
+    context 'when case has a kp issue format' do
       it 'parses the data' do
-        fixture_path = 'spec/fixtures/parsers/issues/simplified-format.html'
+        fixture_path = 'spec/fixtures/parsers/issues/kp-format.html'
         html = File.read(fixture_path) # Custom parse to fix nokogiri parse error
         html = html.gsub('<$', '< $')
         parsed_html = Nokogiri::HTML.parse(html).css('body').children
