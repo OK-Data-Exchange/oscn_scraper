@@ -9,4 +9,5 @@
 .rspec_status
 .byebug_history
 .env
+.idea
 *.code-workspace

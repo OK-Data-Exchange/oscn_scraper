@@ -1,11 +1,18 @@
 require 'spec_helper'
-
+# rubocop:disable Metrics/BlockLength
 RSpec.describe OscnScraper::Requestor::Report do
   describe '#fetch_daily_filings' do
     it 'only allows valid params' do
       params = {
         county: 'Oklahoma',
         bad_param: Date.new(2020, 1, 1)
+      }
+      expect { described_class.new(params).fetch_daily_filings }.to raise_error OscnScraper::Errors::InvalidParam
+    end
+
+    it 'only allows valid counties' do
+      params = {
+        county: 'Wagoner'
       }
       expect { described_class.new(params).fetch_daily_filings }.to raise_error OscnScraper::Errors::InvalidParam
     end
@@ -36,3 +43,4 @@ RSpec.describe OscnScraper::Requestor::Report do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

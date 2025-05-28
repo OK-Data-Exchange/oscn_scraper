@@ -24,13 +24,16 @@ module OscnScraper
 
       attr_accessor :docket_events
 
+      # rubocop:disable Metrics/AbcSize
       def parse_docket_events
         return docket_events if docket_events_html.blank?
 
+        last_date = false
         docket_events_html.css('tbody tr').each_with_index do |row, i|
+          last_date = date(row.css('td')[0]).present? ? date(row.css('td')[0]) : last_date
           docket_events[:docket_events] << {
             event_number: i,
-            date: date(row.css('td')[0]),
+            date: last_date,
             code: sanitize_data(row.css('td')[1]),
             description: sanitize_data(row.css('td')[2]),
             count: sanitize_data(row.css('td')[3]),
@@ -41,6 +44,7 @@ module OscnScraper
         end
         docket_events
       end
+      # rubocop:enable Metrics/AbcSize
 
       def parse_links(row)
         row.css('a').map { |link| { title: link.text, link: "https://www.oscn.net/dockets/#{link['href']}", oscn_id: extract_id(link['href']) } }
@@ -55,7 +59,11 @@ module OscnScraper
       def date(data)
         return nil if sanitize_data(data) == ''
 
-        Date.strptime(sanitize_data(data), '%m-%d-%Y')
+        begin
+          Date.strptime(sanitize_data(data), '%m-%d-%Y')
+        rescue Date::Error
+          Date.strptime(sanitize_data(data), '%m/%d/%Y')
+        end
       end
     end
   end
