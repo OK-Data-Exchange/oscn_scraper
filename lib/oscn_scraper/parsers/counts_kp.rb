@@ -21,7 +21,7 @@ module OscnScraper
       private
 
       def parse_counts
-        counts = counts_html.css('p').map do |row|
+        counts = counts_html.css('p:has(> strong)').map do |row|
           count_object(row)
         end
         { counts: counts }
