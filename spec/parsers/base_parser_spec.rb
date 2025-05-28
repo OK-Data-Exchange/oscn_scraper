@@ -33,6 +33,18 @@ RSpec.describe OscnScraper::Parsers::BaseParser do
       end
     end
 
+    context 'when parsing a case with no counts' do
+      it 'parses the html' do
+        fixture_path = 'spec/fixtures/no-counts.html'
+        html = File.read(fixture_path) # Custom parse to fix nokogiri parse error
+        html = html.gsub('<$', '< $')
+        parsed_html = Nokogiri::HTML.parse(html)
+        data = described_class.new(parsed_html).build_object
+
+        expect(data[:counts].count).to eq 0
+      end
+    end
+
     context 'when parsing a kp case for a smaller county (vs an ocis case) ' do
       it 'parses the html' do
         fixture_path = 'spec/fixtures/kp-example.html'
